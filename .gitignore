@@ -33,3 +33,6 @@ node_modules
 local_code
 
 bower_components
+
+**/.gradle/
+**/gradle/
