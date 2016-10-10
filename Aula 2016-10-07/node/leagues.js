@@ -1,22 +1,25 @@
 'use strict';
 
-var http = require("http");
+var http = require("http")
 
-var options = {
-    host: "api.football-data.org",
-    path: "/v1/soccerseasons/{id}/leagueTable"
+
+
+function Options(id) {
+    this.host = "api.football-data.org"
+    this.path = "/v1/soccerseasons/{id}/leagueTable".replace("{id}", id);
 };
 
 
 var leagues = ["439", "430", "436"];
 
-leagues.forEach(prepareRequest, processResult)
+leagues.forEach(prepareRequest)
+
+
 
 
 function prepareRequest(id) {
-    options.path = options.path.replace("{id}", id);
-    console.log(options.path);
-    makeRequest(options, processResult);
+    console.log("prepareRequest with:" + id)
+    makeRequest(new Options(id), processResult);
 
 }
 
@@ -45,9 +48,7 @@ function makeRequest(options, cb) {
         res.on('data', chunk => response += chunk);
 
         res.on('end', () => cb(null, JSON.parse(response)));
-        res.on('error', (e) => cb(e)
-    )
-        ;
+        res.on('error', (e) => cb(e))
 
         //console.log(response);
     }

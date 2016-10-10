@@ -9,7 +9,9 @@
     "extends": "eslint:recommended",
     "rules": {
         "semi": 0,
-        "no-console": "off"
+        "no-console": "off",
+        "consistent-return": "error"
+        
     },
     "env": {
         "node": true,
